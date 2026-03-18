@@ -21,7 +21,6 @@ class RunController extends Controller
 
         $rawTime = trim($validated['time']);
 
-        // Parse du temps (minutes / heures / secondes)
         if (preg_match('/^\d+$/', $rawTime)) {
             $interval = CarbonInterval::minutes((int) $rawTime);
         } elseif (preg_match('/^\d+:\d{2}$/', $rawTime)) {
@@ -40,7 +39,6 @@ class RunController extends Controller
 
         $totalSeconds = $interval->totalSeconds;
 
-        // Distances en km
         $distanceKm = [
             '5k'  => 5,
             '10k' => 10,
@@ -48,7 +46,6 @@ class RunController extends Controller
             '42k' => 42.195,
         ];
 
-        // Paces de référence (sec/km)
         $referencePace = [
             '5k'  => 240,
             '10k' => 255,
@@ -59,17 +56,45 @@ class RunController extends Controller
         $km = $distanceKm[$validated['distance']];
         $paceSeconds = $totalSeconds / $km;
 
-        // Normalisation
         $score = $referencePace[$validated['distance']] / $paceSeconds;
-
-        // Clamp + percentile
         $percentile = max(0, min(100, round($score * 50)));
 
+        // Rank based on pace (sec/km)
+        if ($paceSeconds <= 180)      $rank = 'Challenger';
+        elseif ($paceSeconds <= 210)  $rank = 'Grandmaster';
+        elseif ($paceSeconds <= 240)  $rank = 'Master';
+        elseif ($paceSeconds <= 270)  $rank = 'Diamond';
+        elseif ($paceSeconds <= 300)  $rank = 'Platinum';
+        elseif ($paceSeconds <= 330)  $rank = 'Gold';
+        elseif ($paceSeconds <= 390)  $rank = 'Silver';
+        elseif ($paceSeconds <= 450)  $rank = 'Bronze';
+        else                          $rank = 'Iron';
+
+        $nextRanks = [
+            'Iron'        => ['name' => 'Bronze',      'pace' => '7:30'],
+            'Bronze'      => ['name' => 'Silver',      'pace' => '6:30'],
+            'Silver'      => ['name' => 'Gold',        'pace' => '5:30'],
+            'Gold'        => ['name' => 'Platinum',    'pace' => '5:00'],
+            'Platinum'    => ['name' => 'Diamond',     'pace' => '4:30'],
+            'Diamond'     => ['name' => 'Master',      'pace' => '4:00'],
+            'Master'      => ['name' => 'Grandmaster', 'pace' => '3:30'],
+            'Grandmaster' => ['name' => 'Challenger',  'pace' => '3:00'],
+        ];
+
+        $distanceLabels = [
+            '5k'  => '5 km',
+            '10k' => '10 km',
+            '21k' => '21 km (Semi)',
+            '42k' => '42 km (Marathon)',
+        ];
+
         return view('result', [
-            'distance'   => $validated['distance'],
-            'time'       => $interval->cascade()->forHumans(['short' => true]),
-            'pace'       => gmdate('i:s', (int) $paceSeconds),
-            'percentile' => $percentile,
+            'distance'      => $distanceLabels[$validated['distance']],
+            'time'          => $interval->cascade()->forHumans(['short' => true]),
+            'pace'          => gmdate('i:s', (int) $paceSeconds),
+            'percentile'    => $percentile,
+            'rank'          => $rank,
+            'nextRank'      => $nextRanks[$rank] ?? null,
         ]);
     }
 }
