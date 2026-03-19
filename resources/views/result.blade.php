@@ -83,6 +83,23 @@
         .btn { display: flex; align-items: center; justify-content: center; gap: 8px; border-radius: 14px; font-size: 14px; font-weight: 500; padding: 14px; text-decoration: none; transition: all 0.2s; border: 1px solid; cursor: pointer; background: none; }
         .btn-share { background: rgba(39,39,42,0.8); border-color: rgba(255,255,255,0.1); color: white; }
         .btn-share:hover { background: rgba(63,63,70,0.8); }
+        .cert-banner {
+            display: flex; align-items: center; gap: 16px;
+            background: rgba(251,191,36,0.07); border: 1px solid rgba(251,191,36,0.25);
+            border-radius: 16px; padding: 20px 24px; margin-bottom: 12px;
+        }
+        .cert-icon { font-size: 28px; flex-shrink: 0; }
+        .cert-content { flex: 1; }
+        .cert-title { font-size: 15px; font-weight: 600; color: #fbbf24; margin-bottom: 4px; }
+        .cert-sub { font-size: 13px; color: #78716c; line-height: 1.5; }
+        .cert-btn {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: #fbbf24; border-radius: 10px; color: #1c1917;
+            font-size: 13px; font-weight: 700; padding: 10px 18px;
+            text-decoration: none; transition: all 0.2s; white-space: nowrap; flex-shrink: 0;
+        }
+        .cert-btn:hover { background: #f59e0b; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(251,191,36,0.3); }
+        @media (max-width: 540px) { .cert-banner { flex-direction: column; text-align: center; } }
         .footer { margin-top: 24px; border-top: 1px solid rgba(255,255,255,0.07); padding-top: 20px; }
         .footer-links { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 10px; }
         .footer-link { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); border-radius: 8px; color: #52525b; font-size: 12px; padding: 6px 12px; text-decoration: none; transition: all 0.2s; }
@@ -160,6 +177,15 @@
             Recalculer
         </a>
     </div>
+</div>
+
+<div class="cert-banner">
+    <div class="cert-icon">🎓</div>
+    <div class="cert-content">
+        <div class="cert-title">Envie de maîtriser Clever Cloud ?</div>
+        <div class="cert-sub">Validez vos compétences avec la certification officielle — et devenez expert de la plateforme.</div>
+    </div>
+    <a class="cert-btn" href="https://academy.clever.cloud/" target="_blank" rel="noopener noreferrer">Obtenir la certification →</a>
 </div>
 
 <footer class="footer">

@@ -77,6 +77,23 @@
         }
         @keyframes spin { to { transform: rotate(360deg); } }
         .hint { text-align: center; color: #52525b; font-size: 12px; margin-top: 20px; }
+        .cert-banner {
+            display: flex; align-items: center; gap: 16px;
+            background: rgba(251,191,36,0.07); border: 1px solid rgba(251,191,36,0.25);
+            border-radius: 16px; padding: 20px 24px; margin-bottom: 14px;
+        }
+        .cert-icon { font-size: 28px; flex-shrink: 0; }
+        .cert-content { flex: 1; }
+        .cert-title { font-size: 15px; font-weight: 600; color: #fbbf24; margin-bottom: 4px; }
+        .cert-sub { font-size: 13px; color: #78716c; line-height: 1.5; }
+        .cert-btn {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: #fbbf24; border-radius: 10px; color: #1c1917;
+            font-size: 13px; font-weight: 700; padding: 10px 18px;
+            text-decoration: none; transition: all 0.2s; white-space: nowrap; flex-shrink: 0;
+        }
+        .cert-btn:hover { background: #f59e0b; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(251,191,36,0.3); }
+        @media (max-width: 540px) { .cert-banner { flex-direction: column; text-align: center; } }
         .footer { margin-top: 36px; border-top: 1px solid rgba(255,255,255,0.07); padding-top: 22px; }
         .footer-links { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 12px; }
         .footer-link { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); border-radius: 8px; color: #52525b; font-size: 12px; padding: 6px 12px; text-decoration: none; transition: all 0.2s; }
@@ -156,6 +173,15 @@
     </div>
 
     <p class="hint">Laisse les heures à 0 si tu cours moins d'1 heure</p>
+
+    <div class="cert-banner">
+        <div class="cert-icon">🎓</div>
+        <div class="cert-content">
+            <div class="cert-title">Envie de maîtriser Clever Cloud ?</div>
+            <div class="cert-sub">Validez vos compétences avec la certification officielle — et devenez expert de la plateforme.</div>
+        </div>
+        <a class="cert-btn" href="https://academy.clever.cloud/" target="_blank" rel="noopener noreferrer">Obtenir la certification →</a>
+    </div>
 
     <footer class="footer">
         <div class="footer-links">
