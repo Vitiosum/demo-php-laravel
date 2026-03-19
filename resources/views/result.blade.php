@@ -83,6 +83,15 @@
         .btn { display: flex; align-items: center; justify-content: center; gap: 8px; border-radius: 14px; font-size: 14px; font-weight: 500; padding: 14px; text-decoration: none; transition: all 0.2s; border: 1px solid; cursor: pointer; background: none; }
         .btn-share { background: rgba(39,39,42,0.8); border-color: rgba(255,255,255,0.1); color: white; }
         .btn-share:hover { background: rgba(63,63,70,0.8); }
+        .footer { margin-top: 24px; border-top: 1px solid rgba(255,255,255,0.07); padding-top: 20px; }
+        .footer-links { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 10px; }
+        .footer-link { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); border-radius: 8px; color: #52525b; font-size: 12px; padding: 6px 12px; text-decoration: none; transition: all 0.2s; }
+        .footer-link:hover { background: rgba(255,255,255,0.08); color: #a1a1aa; }
+        .footer-link.cc { color: #86efac; border-color: rgba(34,197,94,0.2); background: rgba(34,197,94,0.06); }
+        .footer-link.cc:hover { background: rgba(34,197,94,0.12); }
+        .footer-link.li { color: #93c5fd; border-color: rgba(96,165,250,0.2); background: rgba(96,165,250,0.06); }
+        .footer-link.li:hover { background: rgba(96,165,250,0.12); }
+        .footer-copy { text-align: center; color: #3f3f46; font-size: 11px; }
     </style>
 </head>
 <body>
@@ -150,6 +159,28 @@
         </a>
     </div>
 </div>
+
+<footer class="footer">
+    <div class="footer-links">
+        <a class="footer-link cc" href="https://www.clever-cloud.com" target="_blank" rel="noopener noreferrer">
+            <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+            clever-cloud.com
+        </a>
+        <a class="footer-link li" href="https://www.linkedin.com/company/clever-cloud/" target="_blank" rel="noopener noreferrer">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+            LinkedIn
+        </a>
+        <a class="footer-link" href="https://developers.clever-cloud.com/doc/applications/php/" target="_blank" rel="noopener noreferrer">
+            <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            PHP on CC
+        </a>
+        <a class="footer-link" href="https://laravel.com/docs" target="_blank" rel="noopener noreferrer">
+            <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            Laravel Docs
+        </a>
+    </div>
+    <p class="footer-copy">Open source demo &middot; Deployed on Clever Cloud</p>
+</footer>
 
 <script>
 function shareResult() {
