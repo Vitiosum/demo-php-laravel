@@ -1,59 +1,78 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# RunRank Laravel — Race pace calculator on Clever Cloud
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+> A Laravel 12 app that calculates your running pace and assigns a League of Legends–style rank. Deployed on Clever Cloud's PHP runtime.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Deploy on Clever Cloud
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+1. Fork this repository
+2. In the Clever Cloud console, create a new **PHP** application — connect your forked repo
+3. No add-on needed (stateless, cookie-based sessions)
+4. The `.env` file is committed — no manual environment variables to set
+5. Push → Clever Cloud deploys automatically
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+**Configuration file:** `clevercloud/php.json`
 
-## Learning Laravel
+```json
+{ "deploy": { "webroot": "/public" } }
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Stack
 
-## Laravel Sponsors
+| Layer     | Technology       |
+|-----------|------------------|
+| Language  | PHP 8.2          |
+| Framework | Laravel 12       |
+| Templates | Blade            |
+| Sessions  | Cookie driver    |
+| Design    | Track Night (Bebas Neue, orange #FF5A1F, dark background) |
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+---
 
-### Premium Partners
+## Features
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+- Running pace calculator (distance + time → min/km)
+- Rank assignment from Iron to Challenger (League of Legends–style tiers)
+- Track Night design system — full dark UI with orange accents
+- Stateless — no database required
 
-## Contributing
+---
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Local Development
 
-## Code of Conduct
+### Prerequisites
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+- PHP 8.2+
+- Composer
 
-## Security Vulnerabilities
+### Run
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```bash
+git clone https://github.com/Vitiosum/demo-php-laravel
+cd demo-php-laravel
+composer install
+php artisan serve
+# → http://localhost:8000
+```
 
-## License
+---
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Environment Variables
+
+| Variable         | Required | Description                                      |
+|------------------|----------|--------------------------------------------------|
+| `APP_KEY`        | auto     | Pre-set in committed `.env`                      |
+| `SESSION_DRIVER` | auto     | Set to `cookie` in committed `.env`              |
+
+No variables need to be set manually.
+
+---
+
+## Deployment Notes
+
+- `clevercloud/php.json` sets the web root to `/public` — required for Laravel on Clever Cloud
+- `.env` is committed (APP_KEY included, SESSION_DRIVER=cookie) — intentional for this demo
+- No database add-on required — the app is fully stateless
